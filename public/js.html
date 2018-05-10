@@ -14,7 +14,12 @@
     //     children: 'Hello World!!!'
     //     }
     // );
-    const element = <div className="container">Hello World Eaters!!</div>;
-
+    const Message = (props) => <div>{props.msg}</div>;
+    const element = (
+        <div>
+            <Message msg={"Hello World"}/>
+            <Message msg={"Goodbye World"}/>
+        </div>
+    )
     ReactDOM.render(element, rootElement);
 </script>
