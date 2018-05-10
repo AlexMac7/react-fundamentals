@@ -19,8 +19,8 @@ class App extends React.Component {
         return (
             //wrap jsx elements in a parent node to return multiple nodes
             <div>
-                <input type="text" onChange={this.update.bind(this)} />
                 <h1 className="">{this.state.text}</h1>
+                <Widget update={this.update.bind(this)}/>
                 <h1 className="">{`I have ${cat} cats`}</h1>
             </div>
         );
@@ -33,6 +33,7 @@ App.propTypes = {
 }
 
 //stateless function component below, obviously can't have state like the class component
-// const App = () => <h1>Hello World</h1>;
+const Widget = (props) =>
+    <input type="text" onChange={props.update}/>;
 
 export default App;
