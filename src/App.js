@@ -13,15 +13,15 @@ class App extends React.Component {
     }
 
     render () {
-        let text = this.props.text;
         let cat = this.props.cat;
 
         return (
             //wrap jsx elements in a parent node to return multiple nodes
             <div>
                 <h1 className="">{this.state.text}</h1>
-                <Widget update={this.update.bind(this)}/>
+                <Widget update={this.update.bind(this)} />
                 <h1 className="">{`I have ${cat} cats`}</h1>
+                <Button>I <Heart /> React</Button>
             </div>
         );
     }
@@ -32,8 +32,14 @@ App.propTypes = {
     cat: PropTypes.number.isRequired,
 }
 
+class Heart extends React.Component {
+    render () {
+        return <span>&hearts;</span>
+    }
+}
+
 //stateless function component below, obviously can't have state like the class component
-const Widget = (props) =>
-    <input type="text" onChange={props.update}/>;
+const Widget = (props) => <input type="text" onChange={props.update}/>;
+const Button = (props) => <button>{props.children}</button>
 
 export default App;
