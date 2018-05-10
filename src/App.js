@@ -1,40 +1,55 @@
 import React from 'react';
+import ReactDom from 'react-dom';
 
 class App extends React.Component {
-    constructor () {
+    constructor() {
         super(); //gives 'this' the context for this component and not the parent React.Component
         this.state = {
-            a: '',
-            b: ''
+            value: 0
         }
+        this.update = this.update.bind(this)
     }
-    update () {
+
+    update() {
         this.setState({
-            a: this.refs.a.value,
-            b: this.refs.b.value
+            value: this.state.value + 1
         });
     }
 
-    render () {
+    componentWillMount() {
+        console.log('will mount');
+    }
+
+    render() {
+        console.log('render');
+        return <button onClick={this.update}>{ this.state.value }</button>
+    }
+
+    componentDidMount() {
+        console.log('did mount');
+    }
+
+    componentWillUnmount() {
+        console.log('will unmount');
+    }
+}
+
+class Wrapper extends React.Component {
+    mount() {
+        ReactDom.render(<App />, document.getElementById('a'));
+    }
+    unmount() {
+        ReactDom.unmountComponentAtNode(document.getElementById('a'))
+    }
+    render() {
         return (
-            //wrap jsx elements in a parent node to return multiple nodes
             <div>
-                <input
-                    ref="a"
-                    type="text"
-                    onChange={this.update.bind(this)}
-                />
-                {this.state.a}
-                <hr />
-                <input
-                    ref="b"
-                    type="text"
-                    onChange={this.update.bind(this)}
-                />
-                {this.state.b}
+                <button onClick={this.mount.bind(this)}>Mount</button>
+                <button onClick={this.unmount.bind(this)}>UnMount</button>
+                <div id="a"></div>
             </div>
         );
     }
 }
 
-export default App;
+export default Wrapper;
