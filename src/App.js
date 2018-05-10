@@ -3,7 +3,11 @@ import React from 'react';
 class App extends React.Component {
     render () {
         return (
-            <h1 className="">Hello World</h1>
+            //wrap jsx elements in a parent node to return multiple nodes
+            <div>
+                <h1 className="">Hello World</h1>
+                <h1 className="">Test a second one</h1>
+            </div>
         );
     }
 }
