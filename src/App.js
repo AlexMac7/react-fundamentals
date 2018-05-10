@@ -28,7 +28,12 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-    text: PropTypes.string,
+    //custom prop type validation
+    text(props, propName, component) {
+        if (! (propName in props)) {
+            return new Error(`Missing ${propName}`);
+        }
+    },
     cat: PropTypes.number.isRequired,
 }
 
